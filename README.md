@@ -26,4 +26,27 @@ CREATE TABLE `tests` (
   `id` int(11) NOT NULL<br>
 ) 
 <br>
+
+CREATE TABLE `reports` (
+  `tab_switches` int(11) NOT NULL,
+  `face_suspicion` int(11) NOT NULL,
+  `eye_suspicion` int(11) NOT NULL,
+  `student_email` varchar(255) NOT NULL,
+  `test_id` int(11) NOT NULL
+) 
+<br>
+
+CREATE TABLE `students` (
+  `email` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `imgpath` int(11) NOT NULL
+)
+
+<br>
+CREATE TABLE `student_test` (
+  `email` varchar(255) NOT NULL,
+  `test_id` varchar(255) NOT NULL
+) 
+<br>
+
 goto http://localhost:3000/<br>
