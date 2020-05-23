@@ -49,4 +49,4 @@ CREATE TABLE `student_test` (<br>
 ) 
 <br>
 
-goto http://localhost:3000/<br>
+go to http://localhost:3000/<br>
