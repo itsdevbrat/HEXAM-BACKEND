@@ -11,12 +11,12 @@ run a mysql server <br>
     database: 'hexamdb'
     
     
-CREATE TABLE `teachers` (
+CREATE TABLE `teachers` (<br>
   `email` varchar(255) NOT NULL,<br>
   `pass` varchar(255) NOT NULL<br>
 )
 
-CREATE TABLE `tests` (
+CREATE TABLE `tests` (<br>
   `title` varchar(255) NOT NULL,<br>
   `description` text NOT NULL,<br>
   `duration` int(11) NOT NULL,<br>
@@ -27,25 +27,25 @@ CREATE TABLE `tests` (
 ) 
 <br>
 
-CREATE TABLE `reports` (
-  `tab_switches` int(11) NOT NULL,
-  `face_suspicion` int(11) NOT NULL,
-  `eye_suspicion` int(11) NOT NULL,
-  `student_email` varchar(255) NOT NULL,
-  `test_id` int(11) NOT NULL
+CREATE TABLE `reports` (<br>
+  `tab_switches` int(11) NOT NULL,<br>
+  `face_suspicion` int(11) NOT NULL,<br>
+  `eye_suspicion` int(11) NOT NULL,<br>
+  `student_email` varchar(255) NOT NULL,<br>
+  `test_id` int(11) NOT NULL<br>
 ) 
 <br>
 
-CREATE TABLE `students` (
-  `email` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `imgpath` int(11) NOT NULL
+CREATE TABLE `students` (<br>
+  `email` varchar(255) NOT NULL,<br>
+  `name` varchar(255) NOT NULL,<br>
+  `imgpath` int(11) NOT NULL<br>
 )
 
-<br>
-CREATE TABLE `student_test` (
-  `email` varchar(255) NOT NULL,
-  `test_id` varchar(255) NOT NULL
+<br><br>
+CREATE TABLE `student_test` (<br>
+  `email` varchar(255) NOT NULL,<br>
+  `test_id` varchar(255) NOT NULL<br>
 ) 
 <br>
 
