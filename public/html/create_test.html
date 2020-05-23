@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-image: url("https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Balsamiq Sans';
+        }
+
+        .decorate {
+            background-color: hsla(0, 0%, 100%, 0.8);
+            margin-top: 1%;
+        }
+
+        #custom {
+            margin-top: 5%;
+
+        }
+
+        #customh1 {
+            padding-top: 5%;
+        }
+
+        h1 {
+            padding-top: 1%;
+        }
+
+        .btn-info {
+            background-color: #5D432C;
+            margin-bottom: 1%;
+        }
+
+        .btn-info:hover {
+            background-color: black;
+        }
+
+        .form-decorate {
+            padding-left: 10%;
+        }
+
+        table {
+            margin-top: 1%;
+        }
+
+        .navbar-header {
+            width: 100%;
+        }
+
+        .right-side-button {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" href="/teacher/home">Hexam</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/teacher/create">Create a Test</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container decorate">
+        <h1>Create Test</h1>
+
+        <form action="/api/test" method="POST" autocomplete="off">
+
+            <div class="form-group">
+                <label for="tname">Test ID</label>
+                <input type="text" class="form-control" name="id" id="tname" placeholder="Enter Test Title">
+            </div>
+
+            <div class="form-group">
+                <label for="tname">Test Title</label>
+                <input type="text" class="form-control" name="title" id="tname" placeholder="Enter Test Title">
+            </div>
+
+            <div class="form-group">
+                <label for="tdesc">Test Description</label>
+                <input type="textarea" class="form-control" name="description" id="tdesc"
+                    placeholder="Enter Test Description">
+            </div>
+
+            <div class="form-group">
+                <label for="tdate">Test Date</label>
+                <input type="date" class="form-control" name="date" id="tdate" placeholder="Enter Test date">
+            </div>
+
+            <div class="form-group">
+                <label for="tdur">Test Duration</label>
+                <input type="number" class="form-control" name="duration" id="tdur"
+                    placeholder="Enter test duration in minutes">
+            </div>
+
+            <div class="form-group">
+                <label for="tstart">Test Start Time</label>
+                <input type="time" class="form-control" name="start" id="tstart" placeholder="Enter test start time">
+            </div>
+
+            <div class="form-group">
+                <label for="tend">Test End Time</label>
+                <input type="time" class="form-control" name="end" id="tend" placeholder="Enter test end time">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
