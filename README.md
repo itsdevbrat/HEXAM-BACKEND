@@ -1,9 +1,9 @@
 # HEXAM-BACKEND
 
-instruction
-install node
-npm install -y
-run a mysql server 
+instruction<br>
+install node<br>
+npm install -y<br>
+run a mysql server <br>
 
     host: 'localhost',
     user: 'root',
@@ -12,18 +12,18 @@ run a mysql server
     
     
 CREATE TABLE `teachers` (
-  `email` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,<br>
+  `pass` varchar(255) NOT NULL<br>
 )
 
 CREATE TABLE `tests` (
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `duration` int(11) NOT NULL,
-  `start` varchar(255) NOT NULL,
-  `end` varchar(255) NOT NULL,
-  `date` varchar(255) NOT NULL,
-  `id` int(11) NOT NULL
+  `title` varchar(255) NOT NULL,<br>
+  `description` text NOT NULL,<br>
+  `duration` int(11) NOT NULL,<br>
+  `start` varchar(255) NOT NULL,<br>
+  `end` varchar(255) NOT NULL,<br>
+  `date` varchar(255) NOT NULL,<br>
+  `id` int(11) NOT NULL<br>
 ) 
-
-goto http://localhost:3000/
+<br>
+goto http://localhost:3000/<br>
