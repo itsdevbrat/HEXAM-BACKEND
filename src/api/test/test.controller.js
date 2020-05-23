@@ -1,14 +1,38 @@
 'use strict';
 const connection = require('../../config/db')
+    , uuid = require('uuid')
+    , async = require('async');
 
 module.exports = {
-    create: async ({ id, title, description, duration, start, end, date }) => {
-        return new Promise((resolve, reject) => {
-            connection.execute('INSERT INTO tests (id, title, description, duration, start, end, date) values(?,?,?,?,?,?,?)', [id, title, description, duration, start, end, date], (err, results) => {
-                if (err)
+    create: async ({ title, description, duration, start, end, date, students }) => {
+        return new Promise(async (resolve, reject) => {
+            const testId = uuid.v4();
+            connection.beginTransaction((err) => {
+                if (err) {
+                    connection.rollback()
                     reject(err)
-                else
-                    resolve("Inserted")
+                }
+                connection.execute('INSERT INTO tests (id, title, description, duration, start, end, date) values(?,?,?,?,?,?,?)', [testId, title, description, duration, start, end, date], (err, results) => {
+                    if (err) {
+                        connection.rollback()
+                        reject(err)
+                    }
+                    students.forEach(studentEmail => {
+                        connection.query('INSERT INTO student_test values(?,?)', [studentEmail, testId], (err, results) => {
+                            if (err) {
+                                connection.rollback()
+                                reject(err)
+                            }
+                        })
+                    })
+                    connection.commit((err) => {
+                        if (err) {
+                            connection.rollback()
+                            reject(err)
+                        }
+                        resolve("Inserted")
+                    })
+                })
             })
         })
     },
@@ -29,6 +53,15 @@ module.exports = {
                     reject(err)
                 else
                     resolve(rows)
+            })
+        })
+    },
+    getStudentsEmail: async ({ id }) => {
+        return new Promise((resolve, reject) => {
+            connection.execute('SELECT email FROM student_test WHERE test_id = ?', [id], (err, rows, fields) => {
+                if (err)
+                    reject(err)
+                resolve(rows)
             })
         })
     }

@@ -1,6 +1,16 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         body {
             background-image: url("https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
@@ -55,7 +65,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadStudents()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <a class="navbar-brand" href="/teacher/home">Hexam</a>
 
@@ -67,7 +77,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">Logout</a>
+                    <a class="nav-link" href="/">Logout</a>
                 </li>
             </ul>
         </div>
@@ -76,12 +86,7 @@
     <div class="container decorate">
         <h1>Create Test</h1>
 
-        <form action="/api/test" method="POST" autocomplete="off">
-
-            <div class="form-group">
-                <label for="tname">Test ID</label>
-                <input type="text" class="form-control" name="id" id="tname" placeholder="Enter Test Title">
-            </div>
+        <form action="/api/test" method="POST">
 
             <div class="form-group">
                 <label for="tname">Test Title</label>
@@ -115,11 +120,110 @@
                 <input type="time" class="form-control" name="end" id="tend" placeholder="Enter test end time">
             </div>
 
+            <label>Select Students</label>
+            <div style="overflow: auto; height:150px;" id="studentsSection"></div>
+
+            <br>
+            <br>
             <div class="form-group">
-                <input type="submit" />
+                <input type="submit" class="btn btn-info" />
             </div>
         </form>
     </div>
+
+
+    <script>
+
+        // function checkAll(ele) {
+        //     var checkboxes = document.getElementsByName('students');
+        //     if (ele.checked) {
+        //         for (var i = 0; i < checkboxes.length; i++) {
+        //             if (checkboxes[i].type == 'checkbox') {
+        //                 checkboxes[i].checked = true;
+        //             }
+        //         }
+        //     } else {
+        //         for (var i = 0; i < sc checkboxes.length; i++) {
+        //             console.log(i)
+        //             if (checkboxes[i].type == 'checkbox') {
+        //                 checkboxes[i].checked = false;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // var count = 0;
+        // function createFields() {
+
+        //     var number = document.getElementById("questionType").value;
+        //     // Container <div> where dynamic content will be placed
+        //     var container = document.getElementById("questionList");
+
+        //     var qtype = document.createElement("input");
+        //     qtype.id = "question_type_" + count;
+        //     qtype.type = "hidden";
+        //     qtype.value = number;
+        //     qtype.name = "question_type_" + count;
+        //     container.appendChild(qtype);
+
+        //     container.appendChild(document.createTextNode("Question:"));
+        //     // Create an <input> element, set its type and name attributes
+        //     var que = document.createElement("input");
+        //     que.id = "question_" + count;
+        //     que.type = "text";
+        //     que.name = "question_" + count;
+        //     que.style = "padding-right:15px;";
+        //     container.appendChild(que);
+
+        //     var input = "";
+        //     if (number == "0") {
+        //         container.appendChild(document.createElement("br"));
+        //         container.appendChild(document.createElement("br"));
+        //         for (i = 0; i < 4; i++) {
+        //             container.appendChild(document.createTextNode("Options:"));
+        //             input = document.createElement("input");
+        //             input.id = "option_" + count + "_" + i;
+        //             input.type = "text";
+        //             input.name = "option_" + count + "_" + i;
+        //             container.appendChild(input);
+        //         }
+        //     }
+        //     else {
+        //         container.appendChild(document.createTextNode("Answer:"));
+        //         input = document.createElement("input");
+        //         input.id = "textarea_" + count;
+        //         input.type = "text";
+        //         input.name = "textarea_" + count;
+        //         container.appendChild(input);
+        //     }
+
+        //     container.appendChild(document.createElement("br"));
+        //     container.appendChild(document.createElement("br"));
+        //     count++;
+        //     document.getElementById("no").setAttribute("value", count);
+        // }
+
+        const loadStudents = async () => {
+            const res = await fetch('http://localhost:3000/api/student/all')
+            const data = await res.json()
+            console.log(data)
+            let s = `<div class="form-check">
+                    <label><input type="checkbox" class="form-check-input" onchange="checkAll(this)"
+                            name="students">Select All</label></div>`
+
+            for (i = 0; i < data.length; i++) {
+                s += `<div class="form-check">
+                        <label>
+                            <input type="checkbox" class="form-check-input" value="${data[i].email}" name="students">
+                                ${data[i].name}  ( ${data[i].email} )
+                        </label>
+                    </div>`
+            }
+            console.log(s)
+            document.querySelector('#studentsSection').innerHTML = s
+        }
+
+    </script>
 </body>
 
 </html>

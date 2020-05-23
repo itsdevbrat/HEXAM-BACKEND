@@ -17,7 +17,8 @@ testRouter
     })
     .post('/', async (req, res) => {
         try {
-            const result = await testController.create({ id: req.body.id, title: req.body.title, description: req.body.description, duration: req.body.duration, start: req.body.start, end: req.body.end, date: req.body.date })
+            console.log(req.body.students)
+            const result = await testController.create({ title: req.body.title, description: req.body.description, duration: req.body.duration, start: req.body.start, end: req.body.end, date: req.body.date, students: req.body.students })
             res.redirect('/api/teacher/home')
         } catch (error) {
             res.sendStatus(404)
@@ -26,6 +27,14 @@ testRouter
     .get('/:id', async (req, res) => {
         try {
             const result = await testController.get({ id: req.params.id })
+            res.json(result)
+        } catch (error) {
+            res.sendStatus(404)
+        }
+    })
+    .get('/students/:id', async (req, res) => {
+        try {
+            const result = await testController.getStudentsEmail({ id: req.params.id })
             res.json(result)
         } catch (error) {
             res.sendStatus(404)
