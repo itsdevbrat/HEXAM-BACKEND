@@ -42,11 +42,6 @@ CREATE TABLE `students` (<br>
   `imgpath` int(11) NOT NULL<br>
 )
 
-<br><br>
-CREATE TABLE `student_test` (<br>
-  `email` varchar(255) NOT NULL,<br>
-  `test_id` varchar(255) NOT NULL<br>
-) 
-<br>
+
 
 go to http://localhost:3000/<br>
