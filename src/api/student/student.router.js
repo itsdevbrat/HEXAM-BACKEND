@@ -18,14 +18,6 @@ studentRouter
     .get('/', (req, res) => {
         res.sendFile(path.join(__dirname, '../../../public/html/create_student.html'))
     })
-    .get('/:email', async (req, res) => {
-        try {
-            const result = await studentController.fetch({ email: req.params.email })
-            res.json(result)
-        } catch (error) {
-            res.sendStatus(404)
-        }
-    })
     .post('/', upload.single('image'), async (req, res) => {
         try {
             const result = await studentController.insert({ name: req.body.name, email: req.body.email, filename: req.file.filename })
@@ -54,6 +46,14 @@ studentRouter
         console.log(req.body)
         try {
             const result = await studentController.updateReport({ faceSuspicion: req.body.faceSuspicion, eyeSuspicion: req.body.eyeSuspicion, tabSwitches: req.body.tabSwitches, email: req.body.studentEmail, testId: req.params.testid })
+            res.json(result)
+        } catch (error) {
+            res.sendStatus(404)
+        }
+    })
+    .get('/:email', async (req, res) => {
+        try {
+            const result = await studentController.fetch({ email: req.params.email })
             res.json(result)
         } catch (error) {
             res.sendStatus(404)
