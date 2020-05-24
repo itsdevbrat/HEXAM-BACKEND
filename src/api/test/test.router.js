@@ -34,7 +34,9 @@ testRouter
     })
     .get('/students/:id', async (req, res) => {
         try {
+            console.log(req.params.id)
             const result = await testController.getStudentsEmail({ id: req.params.id })
+            console.log(result)
             res.json(result)
         } catch (error) {
             res.sendStatus(404)

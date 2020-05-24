@@ -18,7 +18,7 @@ module.exports = {
                         reject(err)
                     }
                     students.forEach(studentEmail => {
-                        connection.query('INSERT INTO student_test values(?,?)', [studentEmail, testId], (err, results) => {
+                        connection.query('INSERT INTO reports(student_email, test_id) values(?,?)', [studentEmail, testId], (err, results) => {
                             if (err) {
                                 connection.rollback()
                                 reject(err)
@@ -58,10 +58,11 @@ module.exports = {
     },
     getStudentsEmail: async ({ id }) => {
         return new Promise((resolve, reject) => {
-            connection.execute('SELECT email FROM student_test WHERE test_id = ?', [id], (err, rows, fields) => {
+            connection.execute('SELECT student_email FROM reports WHERE test_id = ?', [id], (err, rows, fields) => {
                 if (err)
                     reject(err)
-                resolve(rows)
+                else
+                    resolve(rows)
             })
         })
     }

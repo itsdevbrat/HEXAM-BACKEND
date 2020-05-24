@@ -19,6 +19,15 @@ studentRouter
             res.sendStatus(404)
         }
     })
+    .put('/report/:testid', async (req, res) => {
+        console.log(req.body)
+        try {
+            const result = await studentController.updateReport({ faceSuspicion: req.body.faceSuspicion, eyeSuspicion: req.body.eyeSuspicion, tabSwitches: req.body.tabSwitches, email: req.body.studentEmail, testId : req.params.testid })
+            res.json(result)
+        } catch (error) {
+            res.sendStatus(404)
+        }
+    })
 
 
 module.exports = studentRouter

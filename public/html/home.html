@@ -2,7 +2,6 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
@@ -159,8 +158,9 @@
             document.querySelector('#results').style.display = 'block'
             let resEmails = await fetch('http://localhost:3000/api/test/students/' + id)
             let emails = await resEmails.json()
+
             for (i = 0; i < emails.length; i++) {
-                let res = await fetch('http://localhost:3000/api/student/report/' + emails[i].email)
+                let res = await fetch('http://localhost:3000/api/student/report/' + emails[i].student_email)
                 if (res.status != 404) {
                     let data = await res.json();
                     console.log(data)
