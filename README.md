@@ -23,7 +23,7 @@ CREATE TABLE `tests` (<br>
   `start` varchar(255) NOT NULL,<br>
   `end` varchar(255) NOT NULL,<br>
   `date` varchar(255) NOT NULL,<br>
-  `id` int(11) NOT NULL<br>
+  `id` varchar(255) NOT NULL<br>
 ) 
 <br>
 
@@ -32,14 +32,14 @@ CREATE TABLE `reports` (<br>
   `face_suspicion` int(11) NOT NULL,<br>
   `eye_suspicion` int(11) NOT NULL,<br>
   `student_email` varchar(255) NOT NULL,<br>
-  `test_id` int(11) NOT NULL<br>
+  `test_id` varchar(255) NOT NULL<br>
 ) 
 <br>
 
 CREATE TABLE `students` (<br>
   `email` varchar(255) NOT NULL,<br>
   `name` varchar(255) NOT NULL,<br>
-  `imgpath` int(11) NOT NULL<br>
+  `imgpath` varchar(255) NOT NULL<br>
 )
 
 
